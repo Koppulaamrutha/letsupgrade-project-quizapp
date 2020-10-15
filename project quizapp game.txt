@@ -1,0 +1,62 @@
+package quizapp;
+public class Game {
+ Question[] questions = new Question[3];
+ Player player = new Player();
+
+ String[] questionArray = {"Which cartoon shows about the gadgets?", "Where do they stay ?", "what is he look like ?"};
+ String[] option1 = {"Tom and jerry", "India", "human"};
+ String[] option2 = {"Doremon", "america", "cat"};
+ String[] option3 = {"Chota bheem", "China", "rakoon"};
+ String[] option4 = {"Oswald", "africa", "robot"};
+ int[] answers = {2, 3, 4};
+
+ public void initGame() {
+  for (int i = 0; i < 3; i++) {
+   questions[i] = new Question();
+  }
+
+  for (int i = 0; i < 3; i++) {
+   questions[i].question = questionArray[i];
+   questions[i].option1 = option1[i];
+   questions[i].option2 = option2[i];
+   questions[i].option3 = option3[i];
+   questions[i].option4 = option4[i];
+   questions[i].correctAnswer = answers[i];
+  }
+  // questions[0].question="Which cartoon shows about the gadgets?";
+  // questions[0].option1="Tom and jerry";
+  // questions[0].option2="Doremon";
+  // questions[0].option3="Chota bheem";
+  // questions[0].option4="Oswald";
+  // questions[0].correctAnswer=2;
+
+  // questions[1].question="Where do they stay?";
+  // questions[1].option1="India";
+  // questions[1].option2="America";
+  // questions[1].option3="China";
+  // questions[1].option4="Africa";
+  // questions[1].correctAnswer=3;
+
+  // questions[2].question="what is he look like ? ?";
+  // questions[2].option1="human";
+  // questions[2].option2="cat";
+  // questions[2].option3="rakoon";
+  // questions[2].option4="robot";
+  // questions[2].correctAnswer=4;
+ }
+
+ public void play() {
+  player.playerDetails();
+  for (int i = 0; i < 3; i++) {
+   boolean status = questions[i].askQuestion();
+   if (status == true) {
+    player.score = player.score + 5;
+    System.out.println("Your answer is right");
+   } else {
+    System.out.println("Your answer is wrong");
+   }
+   System.out.println("");
+  }
+  System.out.println(player.name + " your score is " + player.score + "/15");
+ }
+}
